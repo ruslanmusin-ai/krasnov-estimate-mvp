@@ -54,7 +54,7 @@ test("принимает площадь потолка равной площад
   assert.equal(result.total, 22_750);
 });
 
-test("просит материал санузла, если известна отделка только остальных помещений", () => {
+test("не предполагает работы в санузле только из-за указанной площади", () => {
   const result = calculateEstimate({
     ...base,
     totalArea: 80,
@@ -62,7 +62,7 @@ test("просит материал санузла, если известна о
     roomFloorFinish: "laminate",
   });
   assert.equal(result.total, 57_800);
-  assert.equal(result.missing[0].field, "bathroomFloorFinish");
+  assert.equal(result.missing.length, 0);
 });
 
 test("честно сообщает об услуге, которой нет в прайсе", () => {

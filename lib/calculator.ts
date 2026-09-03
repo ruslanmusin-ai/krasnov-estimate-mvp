@@ -71,19 +71,6 @@ export function calculateEstimate(input: EstimateInput): Estimate {
     }
   }
 
-  if (
-    input.roomFloorFinish !== "none" &&
-    input.bathroomArea != null &&
-    input.bathroomArea > 0 &&
-    input.bathroomFloorFinish === "none"
-  ) {
-    missing.push({
-      work: "Напольное покрытие в санузлах",
-      field: "bathroomFloorFinish",
-      reason: "Материал пола в санузлах не указан — стоимость не рассчитана.",
-    });
-  }
-
   if (input.wallFinish !== "none") {
     const isBathTile = input.wallFinish === "tile";
     const hasBathroomTile = input.bathroomWallFinish === "tile";
